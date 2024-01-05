@@ -1,0 +1,10 @@
+name: BedWars
+version: '${project.version}'
+main: com.bedwars.BedWars
+load: STARTUP
+commands:
+  bedwars:
+    aliases:
+      - game
+      - bw
+      - бв
