@@ -56,7 +56,7 @@ public class BedListener implements Listener {
     private void breakBed(GamePlayer breaker,Block bed) {
         Team team = breaker.getTeam();
         Team breakTeam = getBreakTeam(breaker);
-        PacketScoreboard scoreboard = new PacketScoreboard();
+        PacketScoreboard scoreboard = BedWars.getInstance().getScoreboard();
 
         Location p1 = team.getBed().getFirst();
         Location p2 = team.getBed().getSecond();

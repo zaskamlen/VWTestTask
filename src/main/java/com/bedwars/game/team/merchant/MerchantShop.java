@@ -45,8 +45,8 @@ public class MerchantShop extends Menu implements MerchantManager {
     public void onClick(int slot, ItemStack item, Player player) {
 
         ItemStack WOOL_BUY = WOOL.setName("&eШерсть").setLore().build();
-        ItemStack SWORD_BUY = SWORD.setName("&eМеч").setLore().build();
-        ItemStack SHEARS_BUY = SHEARS.setName("&eНожницы").setLore().build();
+        ItemStack SWORD_BUY = SWORD.setName("&eМеч").setUnbreakable(true).setLore().build();
+        ItemStack SHEARS_BUY = SHEARS.setName("&eНожницы").setUnbreakable(true).setLore().build();
 
         switch (slot) {
             case 12:

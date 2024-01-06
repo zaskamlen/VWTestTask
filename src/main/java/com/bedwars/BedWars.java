@@ -9,6 +9,7 @@ import com.bedwars.game.listener.game.GameListener;
 import com.bedwars.game.listener.player.PlayerListener;
 import com.bedwars.game.listener.team.TeamListener;
 import com.bedwars.game.menu.MenuListener;
+import com.bedwars.game.nms.scoreboard.PacketScoreboard;
 import com.bedwars.game.team.merchant.EntityListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +18,7 @@ public final class BedWars extends JavaPlugin {
     private static BedWars instance;
     private Game game;
     private GameConfig gameConfig;
+    private PacketScoreboard scoreboard;
 
     @Override
     public void onEnable() {
@@ -24,6 +26,7 @@ public final class BedWars extends JavaPlugin {
         saveDefaultConfig();
         gameConfig = new GameConfig();
         game = new Game();
+        scoreboard = new PacketScoreboard();
 
         Bukkit.getPluginManager().registerEvents(new BedListener(),this);
         Bukkit.getPluginManager().registerEvents(new PlayerListener(),this);
@@ -49,6 +52,9 @@ public final class BedWars extends JavaPlugin {
         return instance;
     }
 
+    public PacketScoreboard getScoreboard() {
+        return scoreboard;
+    }
 
     public Game getGame() {
         return game;

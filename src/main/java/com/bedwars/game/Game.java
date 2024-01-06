@@ -9,6 +9,7 @@ import com.bedwars.game.player.GamePlayer;
 import com.bedwars.game.team.BlueTeam;
 import com.bedwars.game.team.RedTeam;
 import com.bedwars.game.team.Team;
+import com.bedwars.game.timer.Timer;
 import com.bedwars.game.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -59,6 +60,12 @@ public class Game implements GameManager {
             redTeam.getVillager().spawn();
             blueTeam.getVillager().spawn();
         },10);
+
+        players.values().forEach(player -> {
+            Timer timer = new Timer(player.getPlayer(), 1800, this::stop);
+            timer.start();
+        });
+
 
     }
 

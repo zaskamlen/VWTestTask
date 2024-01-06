@@ -7,6 +7,7 @@ import com.bedwars.game.GameState;
 import com.bedwars.game.nms.scoreboard.PacketScoreboard;
 import com.bedwars.game.player.GamePlayer;
 import com.bedwars.game.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -61,7 +62,12 @@ public class PlayerListener implements Listener {
 
             GameLobbyItems.give(player);
 
+            // TODO Добавить чтобы когда набираеся нужное колличество игроков запускать карту
+
             event.setJoinMessage(Utils.color("&fИгрок &e" + gamePlayer.getName() + "&f подключился"));
+
+
+
         } else {
             event.setJoinMessage(null);
         }

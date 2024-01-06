@@ -24,7 +24,7 @@ public class TeamSelectMenu extends Menu {
 
     @Override
     public void onClick(int slot, ItemStack item, Player player) {
-        PacketScoreboard scoreboard = new PacketScoreboard();
+        PacketScoreboard scoreboard = BedWars.getInstance().getScoreboard();
         Game game = BedWars.getInstance().getGame();
         GamePlayer gamePlayer = IPlayerProvider.getGamePlayer(player);
         if (slot == 12 && item.equals(teamRed)) {

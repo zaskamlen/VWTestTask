@@ -36,7 +36,7 @@ public class GameListener implements Listener {
     @EventHandler
     public void onRespawn(PlayerRespawnEvent event) {
         Game map = BedWars.getInstance().getGame();
-        PacketScoreboard scoreboard = new PacketScoreboard();
+        PacketScoreboard scoreboard = BedWars.getInstance().getScoreboard();
         GamePlayer info = IPlayerProvider.getGamePlayer(event.getPlayer());
 
         switch (map.getGameState()) {
@@ -105,7 +105,7 @@ public class GameListener implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-        PacketScoreboard scoreboard = new PacketScoreboard();
+        PacketScoreboard scoreboard = BedWars.getInstance().getScoreboard();
         Player player = event.getEntity();
         Player killer = event.getEntity().getKiller();
         Game map = BedWars.getInstance().getGame();
@@ -121,17 +121,18 @@ public class GameListener implements Listener {
                     GamePlayer playerInfo = IPlayerProvider.getGamePlayer(player);
 
                     killerInfo.addKills(1);
-                    playerInfo.addDeaths(1);
 
                     event.setDeathMessage(Utils.color(
                             "&fИгрок &e" + killer.getPlayer().getDisplayName() + "&f убил игрока &e" + player.getPlayer().getDisplayName() + " &f и получил &a+40&e монет"));
+                    playerInfo.addDeaths(1);
                     scoreboard.send(playerInfo.getPlayer());
                     scoreboard.send(killerInfo.getPlayer());
                 }else {
                     GamePlayer playerInfo = IPlayerProvider.getGamePlayer(player);
-                    playerInfo.addDeaths(1);
                     event.setDeathMessage(Utils.color(
                             "&fИгрок &e" + player.getPlayer().getDisplayName() + "&f умер"));
+
+                    playerInfo.addDeaths(1);
 
                     scoreboard.send(player);
                 }

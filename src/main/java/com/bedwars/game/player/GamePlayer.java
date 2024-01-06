@@ -1,5 +1,6 @@
 package com.bedwars.game.player;
 
+import com.bedwars.game.player.stats.NBT;
 import com.bedwars.game.team.Team;
 import org.bukkit.entity.Player;
 
@@ -10,33 +11,32 @@ public class GamePlayer implements IPlayer {
     private final String username;
     private final UUID uuid;
     private final Player player;
-    private int kills;
-    private int deaths;
-    private int bedBreaks;
+    private final NBT stats;
     private Team team;
 
     public GamePlayer(Player player) {
         this.username = player.getDisplayName();
         this.uuid = player.getUniqueId();
         this.player = player;
-        this.kills = 0;
-        this.bedBreaks = 0;
-        this.deaths = 0;
+        this.stats = new NBT();
+        this.stats.set("kills",0);
+        this.stats.set("deaths",0);
+        this.stats.set("beds",0);
     }
 
     @Override
     public int getKills() {
-        return this.kills;
+        return this.stats.getInt("kills");
     }
 
     @Override
     public int getDeaths() {
-        return this.kills;
+        return this.stats.getInt("deaths");
     }
 
     @Override
     public int getBedBreaks() {
-        return this.bedBreaks;
+        return this.stats.getInt("beds");
     }
 
     @Override
@@ -46,44 +46,38 @@ public class GamePlayer implements IPlayer {
 
     @Override
     public void addKills(int amount) {
-        kills += amount;
+        int kills = stats.getInt("kills");
+        this.stats.set("kills", kills + amount);
     }
 
     @Override
     public void removeKills(int amount) {
-        kills = Math.max(0, kills - amount);
+        int kills = stats.getInt("kills");
+        this.stats.set("kills", kills - amount);
     }
 
     @Override
     public void addDeaths(int amount) {
-        deaths += amount;
+        int deaths = stats.getInt("deaths");
+        this.stats.set("deaths", deaths + amount);
     }
 
     @Override
     public void removeDeaths(int amount) {
-        deaths = Math.max(0, deaths - amount);
+        int deaths = stats.getInt("deaths");
+        this.stats.set("deaths", deaths - amount);
     }
 
     @Override
     public void addBedBreaks(int amount) {
-        bedBreaks += amount;
+        int beds = stats.getInt("beds");
+        this.stats.set("beds", beds + amount);
     }
 
     @Override
     public void removeBedBreaks(int amount) {
-        bedBreaks = Math.max(0, bedBreaks - amount);
-    }
-
-    public void setKills(int kills) {
-        this.kills = kills;
-    }
-
-    public void setDeaths(int deaths) {
-        this.deaths = deaths;
-    }
-
-    public void setBedBreaks(int bedBreaks) {
-        this.bedBreaks = bedBreaks;
+        int beds = stats.getInt("beds");
+        this.stats.set("beds", beds - amount);
     }
 
     @Override
